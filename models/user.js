@@ -11,7 +11,8 @@ var User;
 
 var userSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  locations: [String]
 });
 
 userSchema.statics.authMiddleware = function(req, res, next) {
@@ -30,7 +31,6 @@ userSchema.statics.authMiddleware = function(req, res, next) {
     next();
   });
 };
-
 
 userSchema.methods.generateToken = function () {
   var payload = {
@@ -74,6 +74,24 @@ userSchema.statics.register = function(userObj, cb) {
     });
   });
 };
+
+userSchema.statics.addLocation = function (req, address, cb) {
+  User.findOne({username: req.user.username} , function(err, dbUser) {
+    if(err) {
+      return cb(err);
+    } 
+    dbUser.locations.push(address);
+    dbUser.save(function(err, dbUser) {
+      if(err) {
+        cb(err);
+      } else {
+        cb(err, dbUser.locations);
+      }
+    })
+  })
+}
+
+
 
 User = mongoose.model('User', userSchema);
 

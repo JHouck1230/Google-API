@@ -42,4 +42,14 @@ router.delete('/authenticate', function(req, res) {
   res.clearCookie('appCookie').send();
 });
 
+router.post('/locations', User.authMiddleware, function(req, res) {
+  User.addLocation(req, req.body.location, function(err, location) {
+    if(err) {
+      res.status(400).send(err);
+    } else {
+      res.send(location);
+    }
+  })
+})
+
 module.exports = router;
