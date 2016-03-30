@@ -11,9 +11,9 @@ var User = require('../models/user');
 //   }).select('username');
 // });
 
-// router.get('/profile', User.authMiddleware, function(req, res) {
-//   res.send(req.user);
-// });
+router.get('/profile', User.authMiddleware, function(req, res) {
+  res.send(req.user);
+});
 
 router.post('/authenticate', function(req, res) {
   User.authenticate(req.body, function(err, user) {

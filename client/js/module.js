@@ -17,3 +17,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise('/');
 });
+
+app.run(function(AuthService) {
+	AuthService.init();
+});
