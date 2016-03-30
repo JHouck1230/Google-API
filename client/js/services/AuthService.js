@@ -17,8 +17,7 @@ app.service('AuthService', function($http, $state, UserService) {
     .then(res => {
     	UserService.set(res.data)
     	return res.data;
-    },
-    			err => console.error(err));
+    }, err => console.error(err));
   };
 
   this.login = function(user) {
@@ -26,8 +25,7 @@ app.service('AuthService', function($http, $state, UserService) {
     .then(res => {
     	UserService.set(res.data)
     	return res.data;
-    }, 
-    			err => console.error(err));
+    }, err => console.error(err));
   };
 
 	this.init = function() {

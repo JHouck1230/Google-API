@@ -13,11 +13,11 @@ function initMap() {
     }],
     disableDoubleClickZoom: true
   });
-  map.addListener('click', function(e) {
-    var marker = new google.maps.Marker({
-      position: {lat: e.latLng.lat(), lng: e.latLng.lng()},
-      map: map
-    });
-  });
+  // map.addListener('click', function(e) {
+  //   var marker = new google.maps.Marker({
+  //     position: {lat: e.latLng.lat(), lng: e.latLng.lng()},
+  //     map: map
+  //   });
+  // });
 }
 
