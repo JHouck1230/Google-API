@@ -18,8 +18,11 @@ h2 {
   margin-bottom: 0;
   margin-top: 0; }
 
-a {
+.X {
   float: right; }
+
+.place {
+  float: left; }
 
 ul.dropdown-menu {
   padding: 6px; }

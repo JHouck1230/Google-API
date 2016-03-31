@@ -17,6 +17,10 @@ app.controller('homeCtrl', function($scope, AuthService, NavService, UserService
 		placePhotos();
 	});
 
+	$scope.$on('showWishes', args => {
+		markMap();
+	})
+
 	function markMap() {
 		var mapOptions = {
 	    zoom: 4,
@@ -34,7 +38,7 @@ app.controller('homeCtrl', function($scope, AuthService, NavService, UserService
 	      position: new google.maps.LatLng(location.lat, location.lng),
 	      title: location.address
 		  });
-		  marker.content = `<div class="infoWindowContent">PICTURE!</div>`;  
+		  marker.content = `<div class="infoWindowContent"></div>`;  
 		  google.maps.event.addListener(marker, 'click', function(){
 	      infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
 	      infoWindow.open($scope.map, marker);

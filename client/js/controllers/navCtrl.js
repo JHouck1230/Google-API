@@ -34,4 +34,8 @@ app.controller('navCtrl', function($scope, UserService, AuthService, NavService,
 		NavService.getPhotos();
 	}
 
+	$scope.showWishes = function() {
+		NavService.showWishes();
+	}
+
 });

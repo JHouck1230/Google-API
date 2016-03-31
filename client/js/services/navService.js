@@ -2,7 +2,7 @@
 
 var app = angular.module('googApp');
 
-app.service('NavService', function($http, UserService, InstaService) {
+app.service('NavService', function($http, UserService, InstaService, $rootScope) {
 
 	this.getCoords = function(address) {
     geocodeAddress();
@@ -39,6 +39,10 @@ app.service('NavService', function($http, UserService, InstaService) {
 		return $http.get('/users/instagram')
 		.then(res => InstaService.set(res.data.data),
 					err => console.error(err));
+	};
+
+	this.showWishes =function() {
+		$rootScope.$broadcast('showWishes');
 	};
 
 });
