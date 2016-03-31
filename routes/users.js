@@ -6,11 +6,7 @@ var router = express.Router();
 
 var User = require('../models/user');
 
-// router.get('/usernames', User.authMiddleware, function(req, res) {
-//   User.find({_id: {$ne: req.user._id}}, function(err, users) {
-//     res.status(err ? 400 : 200).send(err || users);
-//   }).select('username');
-// });
+const INSTA_TOKEN = process.env.INSTA_TOKEN;
 
 router.get('/profile', User.authMiddleware, function(req, res) {
   res.send(req.user);
@@ -64,7 +60,7 @@ router.delete('/locations/:address', User.authMiddleware, function(req, res) {
 })
    
 router.get('/instagram', function(req, res) {
-  request.get('https://api.instagram.com/v1/users/self/media/recent/?access_token=2033796677.5b767b5.bcd256e058db4e8ea6e1a4be730a7a91', function(err, resp, body) {
+  request.get('https://api.instagram.com/v1/users/self/media/recent/?access_token=INSTA_TOKEN', function(err, resp, body) {
     if(err) res.send(err);
     res.send(body);
   });
