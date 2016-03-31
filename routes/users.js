@@ -60,7 +60,7 @@ router.delete('/locations/:address', User.authMiddleware, function(req, res) {
 })
    
 router.get('/instagram', function(req, res) {
-  request.get('https://api.instagram.com/v1/users/self/media/recent/?access_token=INSTA_TOKEN', function(err, resp, body) {
+  request.get(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${INSTA_TOKEN}`, function(err, resp, body) {
     if(err) res.send(err);
     res.send(body);
   });
