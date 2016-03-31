@@ -2,7 +2,7 @@
 
 var app = angular.module('googApp');
 
-app.service('NavService', function($http) {
+app.service('NavService', function($http, UserService) {
 
 	this.getCoords = function(address) {
     geocodeAddress();
@@ -15,10 +15,9 @@ app.service('NavService', function($http) {
 		      	lat: results[0].geometry.location.lat(),
 		      	lng: results[0].geometry.location.lng()
 		      };
-		      console.log('location: ', location);
 		      return $http.post('/users/locations', location)
   				.then(function(res) {
-  					console.log('res.data: ', res.data)
+  					UserService.set(res.data);
 						return res.data;
   				}, function (err){
 						console.error("err: ",err);
@@ -27,7 +26,13 @@ app.service('NavService', function($http) {
 		      alert('Geocode was not successful for the following reason: ' + status);
 		    }
 		  });
-		}	
-	}
+		};
+	};
+
+	this.removeLocation = function(location) {
+		$http.delete(`/users/locations/${location.address}`)
+		.then(res => UserService.set(res.data),
+					err => console.error(err));
+	};
 
 });

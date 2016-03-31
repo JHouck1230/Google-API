@@ -35,7 +35,6 @@ app.controller('homeCtrl', function($scope, AuthService, NavService, UserService
 		  $scope.markers.push(marker);
 		}  
 		for (var i = 0; i < $scope.locations.length; i++){
-	    console.log('loca [i]: ', $scope.locations[i]);
 	    createMarker($scope.locations[i]);
 		}
 	}

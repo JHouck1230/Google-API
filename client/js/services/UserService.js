@@ -7,6 +7,7 @@ app.service('UserService', function() {
 		this.locations = user.locations;
 		this.username = user.username;
 		this._id = user._id;
+		this.user = user;
 	};
 	this.destroy = function() {
 		this.locations = null;

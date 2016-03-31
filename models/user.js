@@ -80,18 +80,32 @@ userSchema.statics.addLocation = function (req, location, cb) {
     if(err) {
       return cb(err);
     } 
-  console.log('location: ', location);
     dbUser.locations.push(location);
-  console.log('dbUser.locations: ', dbUser.locations);
     dbUser.save(function(err, dbUser) {
       if(err) {
         cb(err);
       } else {
-        cb(err, dbUser.locations);
-      }
-    })
-  })
-}
+        cb(err, dbUser);
+      };
+    });
+  });
+};
+
+userSchema.statics.removeLocation = function (req, location, cb) {
+  User.findOne({username: req.user.username} , function(err, dbUser) {
+    if(err) return cb(err); 
+    dbUser.locations = dbUser.locations.filter(function(dbLoca, index, array) {
+      if(dbLoca.address !== location) return dbLoca;
+    });
+    dbUser.save(function(err, dbUser) {
+      if(err) {
+        cb(err);
+      } else {
+        cb(err, dbUser);
+      };
+    });
+  });
+};
 
 
 

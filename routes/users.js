@@ -43,11 +43,21 @@ router.delete('/authenticate', function(req, res) {
 });
 
 router.post('/locations', User.authMiddleware, function(req, res) {
-  User.addLocation(req, req.body, function(err, locations) {
+  User.addLocation(req, req.body, function(err, user) {
     if(err) {
       res.status(400).send(err);
     } else {
-      res.send(locations);
+      res.send(user);
+    }
+  })
+})
+
+router.delete('/locations/:address', User.authMiddleware, function(req, res) {
+  User.removeLocation(req, req.params.address, function(err, user) {
+    if(err) {
+      res.status(400).send(err);
+    } else {
+      res.send(user);
     }
   })
 })
