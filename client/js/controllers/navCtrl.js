@@ -12,6 +12,8 @@ app.controller('navCtrl', function($scope, UserService, AuthService, NavService)
 	
 	$scope.logout = function() {
 		AuthService.logout();
+		$scope.username = null;
+		$scope.locations = null;
 	};
 
 	$scope.getCoords = function() {

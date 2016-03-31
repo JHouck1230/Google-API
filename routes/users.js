@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express');
+var request = require('request');
 var router = express.Router();
 
 var User = require('../models/user');
@@ -61,5 +62,12 @@ router.delete('/locations/:address', User.authMiddleware, function(req, res) {
     }
   })
 })
+   
+router.get('/instagram', function(req, res) {
+  request.get('https://api.instagram.com/v1/users/self/media/recent/?access_token=2033796677.5b767b5.bcd256e058db4e8ea6e1a4be730a7a91', function(err, resp, body) {
+    if(err) res.send(err);
+    res.send(body);
+  });
+}); 
 
 module.exports = router;

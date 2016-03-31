@@ -2,7 +2,7 @@
 
 var app = angular.module('googApp');
 
-app.service('NavService', function($http, UserService) {
+app.service('NavService', function($http, UserService, InstaService) {
 
 	this.getCoords = function(address) {
     geocodeAddress();
@@ -36,7 +36,9 @@ app.service('NavService', function($http, UserService) {
 	};
 
 	this.getPhotos = function() {
-		return $http.get('https://api.instagram.com/v1/users/self/media/recent/?access_token=2033796677.5b767b5.bcd256e058db4e8ea6e1a4be730a7a91');
-	}
+		return $http.get('/users/instagram')
+		.then(res => InstaService.set(res.data.data),
+					err => console.error(err));
+	};
 
 });
