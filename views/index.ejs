@@ -32,13 +32,18 @@
 	      <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-globe"></span></a>
 	    </div>
 
-
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
 	        <li class="active"><a ui-sref='home'>Home <span class="sr-only">(current)</span></a></li>
 	        <li><a ng-click='getPhotos()'>Instagram</a></li>
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Locations <span class="caret"></span></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Visited <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li ng-repeat='post in instagram track by $index'><a href={{post.link}}><div><span>{{post.address}}</span></div></a></li>
+	          </ul>
+	        </li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wish List <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
 	            <li ng-click='removeLocation(loca)' ng-repeat='loca in locations track by $index'><div><span>{{loca.address}}</span><a>X</a></div></li>
 	          </ul>

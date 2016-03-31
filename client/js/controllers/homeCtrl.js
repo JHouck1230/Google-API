@@ -76,7 +76,6 @@ app.controller('homeCtrl', function($scope, AuthService, NavService, UserService
 		  $scope.markers.push(marker);
 		}  
 		for (var i = 0; i < $scope.instagram.length; i++){
-			console.log($scope.instagram[i]);
 	    createMarker($scope.instagram[i]);
 		}
 	}
