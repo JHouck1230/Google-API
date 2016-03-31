@@ -35,4 +35,8 @@ app.service('NavService', function($http, UserService) {
 					err => console.error(err));
 	};
 
+	this.getPhotos = function() {
+		return $http.get('https://api.instagram.com/v1/users/self/media/recent/?access_token=2033796677.5b767b5.bcd256e058db4e8ea6e1a4be730a7a91');
+	}
+
 });

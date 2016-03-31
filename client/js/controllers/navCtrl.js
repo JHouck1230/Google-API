@@ -20,6 +20,14 @@ app.controller('navCtrl', function($scope, UserService, AuthService, NavService)
 
 	$scope.removeLocation = function(location) {
 		NavService.removeLocation(location);
+	};
+
+	$scope.getPhotos = function() {
+		console.log('works');
+		NavService.getPhotos()
+		.then(res => {
+			console.log(res);
+		}, err => console.error(err))
 	}
 
 });
