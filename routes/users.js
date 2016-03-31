@@ -43,11 +43,11 @@ router.delete('/authenticate', function(req, res) {
 });
 
 router.post('/locations', User.authMiddleware, function(req, res) {
-  User.addLocation(req, req.body.location, function(err, location) {
+  User.addLocation(req, req.body, function(err, locations) {
     if(err) {
       res.status(400).send(err);
     } else {
-      res.send(location);
+      res.send(locations);
     }
   })
 })

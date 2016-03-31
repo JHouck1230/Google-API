@@ -12,7 +12,7 @@ var User;
 var userSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  locations: [String]
+  locations: { type: Array, default: [] }
 });
 
 userSchema.statics.authMiddleware = function(req, res, next) {
@@ -75,12 +75,14 @@ userSchema.statics.register = function(userObj, cb) {
   });
 };
 
-userSchema.statics.addLocation = function (req, address, cb) {
+userSchema.statics.addLocation = function (req, location, cb) {
   User.findOne({username: req.user.username} , function(err, dbUser) {
     if(err) {
       return cb(err);
     } 
-    dbUser.locations.push(address);
+  console.log('location: ', location);
+    dbUser.locations.push(location);
+  console.log('dbUser.locations: ', dbUser.locations);
     dbUser.save(function(err, dbUser) {
       if(err) {
         cb(err);

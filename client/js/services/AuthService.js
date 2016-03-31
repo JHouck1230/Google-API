@@ -29,8 +29,11 @@ app.service('AuthService', function($http, $state, UserService) {
   };
 
 	this.init = function() {
-		$http.get('/users/profile')
-		.then(res => UserService.set(res.data));
+		return $http.get('/users/profile')
+		.then(res => {
+			UserService.set(res.data);
+			return res.data;
+		}, err => console.error(err));
 	};
 
 });
